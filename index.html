@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<style>
+body {margin:0;}
+</style>
+<script>
+var size = 1;
+
+function offset() {
+	return window.innerHeight - document.body.offsetHeight;
+}
+
+function sizeUp() {
+	document.body.style.fontSize = ++size + "rem";
+	if (size > 100) throw "up";
+}
+
+function sizeDown() {
+	document.body.style.fontSize = --size + "rem";
+	if (size < 1) throw "down";
+}
+
+window.onload = function() {
+	document.body.onkeyup = function() {
+		console.log('ding');
+		while (offset() > 0) sizeUp();
+		while (offset() < 0) sizeDown();
+	}
+}
+</script>
+</head>
+<body contenteditable>
+</body>
+</html>
